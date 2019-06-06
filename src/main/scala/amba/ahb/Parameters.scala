@@ -28,6 +28,15 @@ case class AHBSlaveParameters(
 
   // The device had better not support a transfer larger than it's alignment
   require (minAlignment >= maxTransfer)
+
+  def toResource: ResourceAddress = {
+    ResourceAddress(address, ResourcePermissions(
+      r = supportsRead,
+      w = supportsWrite,
+      x = executable,
+      c = false,
+      a = false))
+  }
 }
 
 case class AHBSlavePortParameters(
@@ -79,6 +88,7 @@ case class AHBBundleParameters(
   val burstBits = AHBParameters.burstBits
   val protBits  = AHBParameters.protBits
   val sizeBits  = AHBParameters.sizeBits
+  val hrespBits = AHBParameters.hrespBits
 
   def union(x: AHBBundleParameters) =
     AHBBundleParameters(
