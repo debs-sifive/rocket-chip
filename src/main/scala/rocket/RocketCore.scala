@@ -858,6 +858,7 @@ class Rocket(tile: RocketTile)(implicit p: Parameters) extends CoreModule()(p)
   coreMonitorBundle.rd1src := wb_reg_inst(24,20)
   coreMonitorBundle.rd1val := Reg(next=Reg(next=ex_rs(1)))
   coreMonitorBundle.inst := csr.io.trace(0).insn
+  coreMonitorBundle.wfi := 0.U //FIXME
 
   if (enableCommitLog) {
     val t = csr.io.trace(0)
