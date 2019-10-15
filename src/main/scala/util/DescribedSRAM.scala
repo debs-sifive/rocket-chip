@@ -17,9 +17,12 @@ import scala.math.log10
 object DescribedSRAMIdAssigner {
   private var nextId: Int = 0
   def genId(): Int = this.synchronized {
+    /* FIXME: hardcoding to 0 until deduplication issues are fixed
     val id = nextId
     nextId += 1
     id
+    */
+    0
   }
 }
 
